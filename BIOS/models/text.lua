@@ -1,6 +1,8 @@
 
+local text = {}
+
 --create a horizontal row
-local function hr(rowWindow)
+function text.hr(rowWindow)
     rowWindow = rowWindow or term.current()
     local w,h = rowWindow.getSize()
     for i = 0, w do
@@ -9,7 +11,7 @@ local function hr(rowWindow)
 end
 
 --create a underline horizontal rol
-local function uhr(rowWindow)
+function text.uhr(rowWindow)
     rowWindow = rowWindow or term.current()
     local w,h = rowWindow.getSize()
     for i = 0, w do
@@ -17,7 +19,4 @@ local function uhr(rowWindow)
     end
 end
 
-return {
-    hr=hr,
-    uhr=uhr
-}
+return text

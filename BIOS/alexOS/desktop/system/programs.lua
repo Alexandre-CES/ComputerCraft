@@ -1,9 +1,8 @@
 
+local programs = {}
 
-local function Main()
+function programs.run()
 
 end
 
-return {
-    run=Main
-}
+return programs

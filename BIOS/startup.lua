@@ -1,6 +1,7 @@
 --OS startup
 
 --requires
+local align = require('helpers/align')
 local bars = require('models/bars')
 local text = require('models/text')
 
@@ -26,9 +27,15 @@ local function Bios()
     monitor.setCursorPos(28,12)
     monitor.write('v1')
 
-    --loadBar(3,7, 25,3)
+    loadBar(3,7, 25,3)
 
-    --sleep(1)
+    monitor.setBackgroundColor(colors.gray)
+    monitor.setTextColor(colors.white)
+    monitor.clear()
+    monitor.setCursorPos(1, 7)
+    sleep(.1)
+    align.printCenter('Welcome!')
+    sleep(1)
 
     monitor.clear()
 end
@@ -36,7 +43,7 @@ end
 Bios()
 
 --run os
-local alexOS = require('alexOS/init')
+local alexOS = require('alexOS/Main')
 alexOS.run()
 
 --for computer reboot

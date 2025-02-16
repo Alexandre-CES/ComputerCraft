@@ -1,20 +1,20 @@
 
 --alexOs modules
-local auth = require('alexOS/auth/init')
-local desktop = require('alexOS/desktop/init')
+local auth = require('alexOS/auth/login')
+local desktop = require('alexOS/desktop/desktop')
 
 --periphenals
 local monitor = peripheral.find('monitor') or term.current()
 
-function Main()
-    --auth.login()
-    desktop.desktop()
+local alexOS = {}
+
+function alexOS.run()
+    auth.run()
+    desktop.run()
 
     monitor.setBackgroundColor(colors.black)
     term.clear()
     shell.run('exit')
 end
 
-return{
-    run=Main
-}
+return alexOS

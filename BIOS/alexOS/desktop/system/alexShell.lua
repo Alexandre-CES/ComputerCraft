@@ -12,7 +12,9 @@ local windowH = require('helpers/windowH')
 local monitor = peripheral.find('monitor') or term.current()
 local w,h = monitor.getSize()
 
-local function Main()
+local alexShell = {}
+
+function alexShell.run()
     term.setBackgroundColor(colors.lightBlue)
     term.clear()
     shellWindow = generateShellWindow()
@@ -78,6 +80,4 @@ function generateShellWindow()
     return shellWindow
 end
 
-return{ 
-    run=Main
-}
+return alexShell

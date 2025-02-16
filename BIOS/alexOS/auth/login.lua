@@ -13,8 +13,10 @@ local uhr = text.uhr
 local monitor = peripheral.find('monitor')
 local w,h = monitor.getSize()
 
+local login = {}
+
 --Create login screan
-local function Main()
+function login.run()
 
     term.setBackgroundColor(colors.lightBlue)
     term.clear()
@@ -57,7 +59,7 @@ function checkUserPassword(user,password)
 end
 
 --read input user and password, returning his values
-function inputIser(loginWindow)
+function inputUser(loginWindow)
     local oldWindow = term.redirect(loginWindow)
 
     loginWindow.setTextColor(colors.white)
@@ -111,6 +113,4 @@ function genLoginScreen()
     return loginWindow
 end
 
-return {
-    run=Main
-}
+return login

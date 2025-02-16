@@ -7,11 +7,13 @@ local monitor = peripheral.find('monitor') or term.current()
 
 local buttons = {}
 
+local buttonTable = {}
+
 --draw button created at create()
-local function drawButton(i)
+function buttons.drawButton(i)
     
     --draw button
-    local button = buttons[i]
+    local button = buttonTable[i]
     local startX = button['startX']
     local startY = button['startY']
     local endX = button['endX']
@@ -31,8 +33,8 @@ end
     insert new button at button's table
     every button needs a function to activate when it is clicked
 ]]
-local function create(startX,startY,endX,endY,func, color, text)
-    table.insert(buttons,{
+function buttons.create(startX,startY,endX,endY,func, color, text)
+    table.insert(buttonTable,{
         startX = startX,
         startY = startY,
         endX = endX,
@@ -42,12 +44,12 @@ local function create(startX,startY,endX,endY,func, color, text)
         text = text or ''
     })
 
-    drawButton(#buttons)
+    buttons.drawButton(#buttonTable)
 end
 
 --clear button's table and screen
-local function clear()
-    buttons = {}
+function buttons.clear()
+    buttonTable = {}
     term.clear()
 end
 
@@ -55,21 +57,21 @@ end
     waits for monitor touch, then call function related to the button at touch position
 If no button is clicked, awaits new click, ultil a button is clicked successfully
 ]]
-local function awaitButtonClick()
+function buttons.awaitButtonClick()
     local clickedButton = false
 
     while clickedButton == false do
         local event, side, x, y = os.pullEvent('monitor_touch')
         sleep(0.1)
 
-        for i = 1, #buttons do
+        for i = 1, #buttonTable do
             if (
-                x >= buttons[i]['startX'] and x <= buttons[i]['endX']
+                x >= buttonTable[i]['startX'] and x <= buttonTable[i]['endX']
             ) and (
-                y >= buttons[i]['startY'] and y <= buttons[i]['endY']
+                y >= buttonTable[i]['startY'] and y <= buttonTable[i]['endY']
             ) then
                 clickedButton = true
-                local func = buttons[i]['func']
+                local func = buttonTable[i]['func']
                 func()
                 return true
             end
@@ -82,18 +84,18 @@ end
     waits for monitor touch, then call function related to the button at touch position
 if no button is clicked, return nil
 ]]
-local function click()
+function buttons.click()
     local event, side, x, y = os.pullEvent('monitor_touch')
     sleep(0.1)
 
-    for i = 1, #buttons do
+    for i = 1, #buttonTable do
         if (
-            x >= buttons[i]['startX'] and x <= buttons[i]['endX']
+            x >= buttonTable[i]['startX'] and x <= buttonTable[i]['endX']
         ) and (
-            y >= buttons[i]['startY'] and y <= buttons[i]['endY']
+            y >= buttonTable[i]['startY'] and y <= buttonTable[i]['endY']
         ) then
             clickedButton = true
-            local func = buttons[i]['func']
+            local func = buttonTable[i]['func']
             func()
             return true
         end
@@ -102,9 +104,4 @@ local function click()
     return nil
 end
 
-return {
-    create=create,
-    clear=clear,
-    click=click,
-    awaitButtonClick=awaitButtonClick
-}
+return buttons

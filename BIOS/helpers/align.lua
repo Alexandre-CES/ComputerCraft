@@ -1,7 +1,8 @@
 --functions related to align things
 
+local align = {}
 
-local function printCenter(text, actualWindow)
+function align.printCenter(text, actualWindow)
     --[[ receive a text and print it in the x center of screen
     it takes a optional argument actualWindow, so you can center the text at any window ]]
     
@@ -12,7 +13,7 @@ local function printCenter(text, actualWindow)
     actualWindow.write(text)
 end
 
-local function slowPrintCenter(text,actualWindow)
+function align.slowPrintCenter(text,actualWindow)
     --[[same as print center, but it print slower]]
 
     actualWindow = actualWindow or term.current()
@@ -29,7 +30,7 @@ end
 Return the x's and y's starting points to center a new window
     if you pass header(boolean) = true, you will get +1 of window's y axis
 ]]
-local function getCenterOfWindow(parentWidth,parentHeight, w, h)
+function align.getCenterOfWindow(parentWidth,parentHeight, w, h)
 
     local startX = math.floor((parentWidth - w) / 2 + 1)
     local startY = math.floor((parentHeight - h) / 2 + 1)
@@ -37,8 +38,4 @@ local function getCenterOfWindow(parentWidth,parentHeight, w, h)
     return startX, startY, w, h
 end
 
-return {
-    printCenter=printCenter,
-    slowPrintCenter=slowPrintCenter,
-    getCenterOfWindow=getCenterOfWindow
-}
+return align

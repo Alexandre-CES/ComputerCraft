@@ -5,9 +5,11 @@ local colorMap = colorsH.colorMap
 local align = require('helpers/align')
 local windowH = require('helpers/windowH')
 
+local bars = {}
+
 --Create a loading bar, with a loading writen on it
 --it basically creates a window, and fill it slowly with blank writes
-local function loadBar(startX,startY,w,h,color1,color2)
+function bars.loadBar(startX,startY,w,h,color1,color2)
 
     local c1 = colorMap[color1] or colors.white
     local c2 = colorMap[color2] or colors.red
@@ -35,6 +37,4 @@ local function loadBar(startX,startY,w,h,color1,color2)
     windowH.delete(loadBarWindow)
 end
 
-return {
-    loadBar=loadBar
-}
+return bars
