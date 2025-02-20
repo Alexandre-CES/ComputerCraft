@@ -84,7 +84,7 @@ end
     waits for monitor touch, then call function related to the button at touch position
 if no button is clicked, return nil
 ]]
-function buttons.click()
+function buttons.click(bool)
     local event, side, x, y = os.pullEvent('monitor_touch')
     sleep(0.1)
 
@@ -95,9 +95,13 @@ function buttons.click()
             y >= buttonTable[i]['startY'] and y <= buttonTable[i]['endY']
         ) then
             clickedButton = true
-            local func = buttonTable[i]['func']
-            func()
-            return true
+            if bool then
+                return buttonTable[i]['func']
+            else
+                local func = buttonTable[i]['func']
+                func()
+                return true
+            end
         end
     end
 

@@ -27,6 +27,7 @@ local function Bios()
     monitor.setCursorPos(28,12)
     monitor.write('v1')
 
+    --[[
     loadBar(3,7, 25,3)
 
     monitor.setBackgroundColor(colors.gray)
@@ -36,7 +37,7 @@ local function Bios()
     sleep(.1)
     align.printCenter('Welcome!')
     sleep(1)
-
+    ]]
     monitor.clear()
 end
 

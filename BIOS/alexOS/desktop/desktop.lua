@@ -21,6 +21,7 @@ function desktop.run()
     
     while true do
         term.setBackgroundColor(colors.lightBlue)
+        term.setTextColor(colors.white)
         term.clear()
         paintutils.drawLine(1,h,w,h, colors.gray)
 

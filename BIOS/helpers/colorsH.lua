@@ -1,6 +1,8 @@
 -- functions related to colors
 
-local colorMap = {
+local colorMapH = {}
+
+colorMapH.colorMap = {
     --[[ Table with colors related to name, so you can use them dinamically ]]
     white = colors.white,
     red = colors.red,
@@ -20,6 +22,4 @@ local colorMap = {
     lightBlue = colors.lightBlue,
 }
 
-return {
-    colorMap=colorMap
-}
+return colorMapH

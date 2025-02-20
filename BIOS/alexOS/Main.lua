@@ -9,7 +9,7 @@ local monitor = peripheral.find('monitor') or term.current()
 local alexOS = {}
 
 function alexOS.run()
-    auth.run()
+    --auth.run()
     desktop.run()
 
     monitor.setBackgroundColor(colors.black)
