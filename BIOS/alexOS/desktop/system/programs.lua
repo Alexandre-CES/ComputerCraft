@@ -11,13 +11,14 @@ function programs.run()
         genProgramsWindow()
         local programInd = buttons.click(true)
 
-        if programInd <= 0 then
-            buttons.clear()
-            break
-        else
-            execProgram(programInd)
+        if programInd then
+            if programInd <= 0 then
+                buttons.clear()
+                break
+            else
+                execProgram(programInd)
+            end
         end
-        
     end
 end
 
@@ -29,17 +30,34 @@ function genProgramsWindow()
 
     local programs = fs.list('./Local/programs')
 
+    local xPos = 1
+
     for i = 1, #programs do
-        local xS = i * 2
+        local xS
+
+        if xPos == 1 then
+            xS = 1
+        elseif xPos == 2 then
+            xS = 11
+        else
+            xS = 21
+        end
+
         local xE = xS + 8
+
+        if xPos % 3 == 0 then
+            xPos = 1
+        else
+            xPos =  xPos + 1
+        end
 
         local yS
         if i / 3 <= 1 then
             yS = 2
         elseif i / 3 > 1 and i / 3 <= 2 then
-            yS = 5
+            yS = 6
         elseif i / 3 > 2 and i / 3 <= 3 then
-            yS = 8
+            yS = 10
         end
 
         local yE = yS + 2
