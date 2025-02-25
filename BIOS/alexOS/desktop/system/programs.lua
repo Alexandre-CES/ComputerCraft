@@ -1,4 +1,5 @@
 local buttons = require('models/button')
+local String = require('helpers/string')
 
 local monitor = peripheral.find('monitor') or term.current()
 
@@ -62,7 +63,9 @@ function genProgramsWindow()
 
         local yE = yS + 2
 
-        buttons.create(xS,yS, xE, yE, i, 'blue', programs[i])
+        local name = String.removeExt(programs[i])
+
+        buttons.create(xS,yS, xE, yE, i, 'blue', name)
     end 
 end
 
