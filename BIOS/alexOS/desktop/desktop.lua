@@ -3,8 +3,8 @@
 local alexShell = require('alexOS/desktop/system/alexShell')
 local programs = require('alexOS/desktop/system/programs')
 
---periphenals
-local monitor = peripheral.find('monitor') or term.current()
+--monitor
+local monitor = term.current()
 local w,h = monitor.getSize()
 
 --models
@@ -20,10 +20,17 @@ local turnOff = nil
 function desktop.run()
     
     while true do
+
+        --clear screen
         term.setBackgroundColor(colors.lightBlue)
         term.setTextColor(colors.white)
         term.clear()
+        button.clear()
         paintutils.drawLine(1,h,w,h, colors.gray)
+        
+        --show time
+        monitor.setCursorPos(w-3,h)
+        monitor.write(os.time())
 
         --turn off computer
         button.create(1,h,2,h,turningComputerOff,'red','I')

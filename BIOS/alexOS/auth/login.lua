@@ -9,8 +9,8 @@ local text = require('models/text')
 --extracting models
 local uhr = text.uhr
 
---Periphenal
-local monitor = peripheral.find('monitor')
+--monitor
+local monitor = term.current()
 local w,h = monitor.getSize()
 
 local login = {}

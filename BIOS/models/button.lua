@@ -2,8 +2,8 @@
 local colorsH = require('helpers/colorsH')
 local colorMap = colorsH.colorMap
 
---periphenal
-local monitor = peripheral.find('monitor') or term.current()
+--monitor
+local monitor = term.current()
 
 local buttons = {}
 
@@ -57,7 +57,7 @@ end
     waits for monitor touch, then call function related to the button at touch position
 If no button is clicked, awaits new click, ultil a button is clicked successfully
 ]]
-function buttons.awaitButtonClick()
+function buttons.awaitButtonClick(bool)
     local clickedButton = false
 
     while clickedButton == false do
@@ -71,9 +71,13 @@ function buttons.awaitButtonClick()
                 y >= buttonTable[i]['startY'] and y <= buttonTable[i]['endY']
             ) then
                 clickedButton = true
-                local func = buttonTable[i]['func']
-                func()
-                return true
+                if bool then
+                    return buttonTable[i]['func']
+                else
+                    local func = buttonTable[i]['func']
+                    func()
+                    return true
+                end
             end
         end
     end

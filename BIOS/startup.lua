@@ -9,8 +9,8 @@ local text = require('models/text')
 local loadBar = bars.loadBar
 local hr = text.hr
 
---periphenals
-local monitor = peripheral.find('monitor') or term.current()
+--monitor
+local monitor = term.current()
 local w,h = monitor.getSize()
 
 local function Bios()
